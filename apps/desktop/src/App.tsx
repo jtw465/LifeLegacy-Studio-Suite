@@ -1,122 +1,100 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
+
+const modules = [
+  "Intake",
+  "Review",
+  "Ledger",
+  "Archive",
+  "Timeline",
+  "Narrative",
+  "Vault",
+  "Export Forge",
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="app-shell">
+      <aside className="sidebar">
+        <div className="brand-lockup">
+          <div className="brand-mark">LL</div>
+          <div>
+            <p className="brand-kicker">LifeLegacy</p>
+            <h1>Studio Suite</h1>
+          </div>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+
+        <nav className="module-nav" aria-label="LifeLegacy workspaces">
+          {modules.map((module, index) => (
+            <button
+              className={index === 0 ? "module-button active" : "module-button"}
+              key={module}
+            >
+              {module}
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      <section className="workspace">
+        <header className="topbar">
+          <div>
+            <p className="eyebrow">Genealogy Workflow Assistant</p>
+            <h2>Universal Record Intake</h2>
+          </div>
+          <button className="ghost-button">Project Settings</button>
+        </header>
+
+        <section className="hero-panel">
+          <div>
+            <p className="eyebrow">Source-first preservation</p>
+            <h3>Bring the record. LifeLegacy helps with the bottleneck.</h3>
+            <p className="hero-copy">
+              Import scans, PDFs, photographs, typed notes, and family-history
+              documents. LifeLegacy assists with extraction, keeps the original
+              source visible, and prepares reviewed data for the genealogy
+              applications researchers already use.
+            </p>
+          </div>
+
+          <div className="intake-card">
+            <p className="card-label">Start here</p>
+            <h4>Import Genealogical Records</h4>
+            <p>
+              Add a PDF, image, scan, typed record, or folder of sources to begin
+              the assisted review workflow.
+            </p>
+            <button className="primary-button">Import Records</button>
+          </div>
+        </section>
+
+        <section className="workflow-grid" aria-label="LifeLegacy workflow">
+          <article className="workflow-card">
+            <span>01</span>
+            <h4>Import</h4>
+            <p>Gather historical records into a calm intake workspace.</p>
+          </article>
+
+          <article className="workflow-card">
+            <span>02</span>
+            <h4>Review</h4>
+            <p>Confirm suggested names, dates, places, and relationships.</p>
+          </article>
+
+          <article className="workflow-card">
+            <span>03</span>
+            <h4>Preserve</h4>
+            <p>Keep every accepted fact connected to its original source.</p>
+          </article>
+
+          <article className="workflow-card">
+            <span>04</span>
+            <h4>Export</h4>
+            <p>Prepare clean transfer packages for genealogy applications.</p>
+          </article>
+        </section>
       </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
