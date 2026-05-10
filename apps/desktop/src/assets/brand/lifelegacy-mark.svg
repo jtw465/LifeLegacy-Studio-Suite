@@ -1,0 +1,14 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LifeLegacy Studio Suite Mark</title>
+  <desc id="desc">An original geometric mark combining a heritage circle, open book, and growing tree form.</desc>
+  <circle cx="48" cy="48" r="42" fill="#0D1B2A"></circle>
+  <circle cx="48" cy="48" r="36" stroke="#C79A4A" stroke-width="3"></circle>
+  <path d="M25 59C32 55 39 55 46 60V35C39 31 32 31 25 35V59Z" fill="#F4F1E6"></path>
+  <path d="M71 59C64 55 57 55 50 60V35C57 31 64 31 71 35V59Z" fill="#F4F1E6"></path>
+  <path d="M48 60V32" stroke="#C79A4A" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M48 37C43 33 39 29 38 23" stroke="#5F7F6B" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M48 37C53 33 57 29 58 23" stroke="#5F7F6B" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M48 42C43 39 38 39 34 42" stroke="#5F7F6B" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M48 42C53 39 58 39 62 42" stroke="#5F7F6B" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M30 67C39 63 57 63 66 67" stroke="#C79A4A" stroke-width="3" stroke-linecap="round"></path>
+</svg>

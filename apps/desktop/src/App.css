@@ -56,16 +56,12 @@ button {
 }
 
 .brand-mark {
-  width: 54px;
-  height: 54px;
-  border: 2px solid var(--heritage-gold);
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  color: var(--heritage-gold);
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  width: 58px;
+  height: 58px;
+  border-radius: 20px;
+  object-fit: contain;
   background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
 .brand-kicker,

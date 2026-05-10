@@ -1,4 +1,5 @@
 import "./App.css";
+import lifeLegacyMark from "./assets/brand/lifelegacy-mark.svg";
 
 const modules = [
   "Intake",
@@ -16,7 +17,7 @@ function App() {
     <main className="app-shell">
       <aside className="sidebar">
         <div className="brand-lockup">
-          <div className="brand-mark">LL</div>
+          <img className="brand-mark" src={lifeLegacyMark} alt="LifeLegacy Studio Suite mark" />
           <div>
             <p className="brand-kicker">LifeLegacy</p>
             <h1>Studio Suite</h1>
