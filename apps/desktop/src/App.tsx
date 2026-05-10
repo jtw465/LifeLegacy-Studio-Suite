@@ -12,12 +12,45 @@ const modules = [
   "Export Forge",
 ];
 
+const recordFormats = [
+  "PDF",
+  "JPG / PNG / TIFF",
+  "Scans",
+  "Photographs",
+  "Typed Notes",
+  "DOCX / ODT / TXT",
+  "CSV",
+  "GEDCOM",
+];
+
+const sourceQueue = [
+  {
+    title: "1900 Census Household Scan",
+    type: "PDF",
+    status: "Ready for assisted extraction",
+  },
+  {
+    title: "Family Bible Page",
+    type: "Image",
+    status: "Waiting for review setup",
+  },
+  {
+    title: "Obituary Transcript",
+    type: "Text",
+    status: "Ready for source card creation",
+  },
+];
+
 function App() {
   return (
     <main className="app-shell">
       <aside className="sidebar">
         <div className="brand-lockup">
-          <img className="brand-mark" src={lifeLegacyMark} alt="LifeLegacy Studio Suite mark" />
+          <img
+            className="brand-mark"
+            src={lifeLegacyMark}
+            alt="LifeLegacy Studio Suite mark"
+          />
           <div>
             <p className="brand-kicker">LifeLegacy</p>
             <h1>Studio Suite</h1>
@@ -34,6 +67,11 @@ function App() {
             </button>
           ))}
         </nav>
+
+        <div className="sidebar-note">
+          <p>Assistant-first design</p>
+          <span>Built to reduce data-entry friction, not replace your genealogy tools.</span>
+        </div>
       </aside>
 
       <section className="workspace">
@@ -45,7 +83,7 @@ function App() {
           <button className="ghost-button">Project Settings</button>
         </header>
 
-        <section className="hero-panel">
+        <section className="hero-panel intake-hero">
           <div>
             <p className="eyebrow">Source-first preservation</p>
             <h3>Bring the record. LifeLegacy helps with the bottleneck.</h3>
@@ -61,11 +99,47 @@ function App() {
             <p className="card-label">Start here</p>
             <h4>Import Genealogical Records</h4>
             <p>
-              Add a PDF, image, scan, typed record, or folder of sources to begin
-              the assisted review workflow.
+              Add a record or folder of sources to begin the assisted intake
+              workflow.
             </p>
             <button className="primary-button">Import Records</button>
           </div>
+        </section>
+
+        <section className="intake-layout">
+          <article className="panel-card">
+            <div className="section-heading">
+              <p className="eyebrow">Supported sources</p>
+              <h3>Record formats</h3>
+            </div>
+
+            <div className="format-grid">
+              {recordFormats.map((format) => (
+                <span className="format-pill" key={format}>
+                  {format}
+                </span>
+              ))}
+            </div>
+          </article>
+
+          <article className="panel-card">
+            <div className="section-heading">
+              <p className="eyebrow">Intake queue preview</p>
+              <h3>Source queue</h3>
+            </div>
+
+            <div className="queue-list">
+              {sourceQueue.map((source) => (
+                <div className="queue-item" key={source.title}>
+                  <div>
+                    <h4>{source.title}</h4>
+                    <p>{source.status}</p>
+                  </div>
+                  <span>{source.type}</span>
+                </div>
+              ))}
+            </div>
+          </article>
         </section>
 
         <section className="workflow-grid" aria-label="LifeLegacy workflow">
