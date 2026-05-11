@@ -11,38 +11,48 @@ const modules = [
   "Export Forge",
 ];
 
-const reviewFacts = [
+const vaultCategories = [
+  "Photos",
+  "Letters",
+  "Audio Memories",
+  "Documents",
+  "Keepsakes",
+  "Family Notes",
+];
+
+const vaultItems = [
   {
-    label: "Possible Person",
-    value: "Elizabeth Carter",
-    source: "1900 Census Household Scan",
-    confidence: "High",
-    status: "Pending review",
+    title: "Grandmother’s Wedding Portrait",
+    type: "Photo",
+    status: "Metadata needed",
+    source: "Family photo box",
   },
   {
-    label: "Possible Birth Year",
-    value: "1878",
-    source: "1900 Census Household Scan",
-    confidence: "Medium",
-    status: "Needs confirmation",
+    title: "Letter from Louisville",
+    type: "Letter",
+    status: "Ready for preservation",
+    source: "Envelope bundle",
   },
   {
-    label: "Possible Relationship",
-    value: "Samuel Carter — father",
-    source: "Family Bible Page",
-    confidence: "Medium",
-    status: "Pending review",
+    title: "Uncle’s Recorded Story",
+    type: "Audio",
+    status: "Awaiting transcript",
+    source: "Cassette transfer",
   },
   {
-    label: "Possible Death Notice",
-    value: "Obituary mentions Louisville, Kentucky",
-    source: "Obituary Transcript",
-    confidence: "High",
-    status: "Ready for review",
+    title: "Family History Notes",
+    type: "Document",
+    status: "Linked to SDR",
+    source: "Typed manuscript",
   },
 ];
 
-const reviewActions = ["Accept", "Edit", "Reject", "Review Later"];
+const preservationPrinciples = [
+  "Original artifact remains preserved",
+  "Memory items can connect to reviewed facts",
+  "Photos, letters, and recordings keep human context",
+  "Nothing becomes final without researcher review",
+];
 
 function App() {
   return (
@@ -63,7 +73,7 @@ function App() {
         <nav className="module-nav" aria-label="LifeLegacy workspaces">
           {modules.map((module, index) => (
             <button
-              className={index === 2 ? "module-button active" : "module-button"}
+              className={index === 5 ? "module-button active" : "module-button"}
               key={module}
             >
               {module}
@@ -72,10 +82,10 @@ function App() {
         </nav>
 
         <div className="sidebar-note">
-          <p>Human review required</p>
+          <p>Emotional archive</p>
           <span>
-            SDR suggestions become trusted genealogy data only after researcher
-            validation.
+            The Memory Vault preserves the human texture around genealogy
+            research: photos, letters, audio, and keepsakes.
           </span>
         </div>
       </aside>
@@ -83,97 +93,87 @@ function App() {
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Review Desk</p>
-            <h2>Suggested Facts</h2>
+            <p className="eyebrow">Memory Vault</p>
+            <h2>Emotional Archive</h2>
           </div>
-          <button className="ghost-button">Review Settings</button>
+          <button className="ghost-button">Vault Settings</button>
         </header>
 
-        <section className="hero-panel review-hero">
+        <section className="hero-panel vault-hero">
           <div>
-            <p className="eyebrow">Source-linked validation</p>
-            <h3>SDR found possible genealogy details. You decide what becomes record.</h3>
+            <p className="eyebrow">Preserve more than facts</p>
+            <h3>Family history is not only dates. It is memory, voice, image, and context.</h3>
             <p className="hero-copy">
-              The Review Desk keeps the researcher in control. Each suggestion
-              remains connected to its original source so names, dates, places,
-              relationships, and notes can be accepted, edited, rejected, or held
-              for later review without losing evidence.
+              The Memory Vault gives photos, letters, recordings, documents, and
+              keepsakes a dedicated preservation space. These items can support
+              genealogy research while retaining their emotional and archival
+              value.
             </p>
           </div>
 
-          <div className="review-summary-card">
-            <p className="card-label">Current review queue</p>
-            <h4>4 suggestions awaiting review</h4>
+          <div className="vault-summary-card">
+            <p className="card-label">Vault status</p>
+            <h4>4 memory items prepared</h4>
             <p>
-              Nothing is final until approved. This protects source integrity and
-              reduces data-entry overwhelm.
+              Memory items remain source-linked and reviewable before becoming
+              part of the preserved family record.
             </p>
           </div>
         </section>
 
-        <section className="review-layout">
-          <article className="panel-card source-preview-card">
+        <section className="vault-layout">
+          <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Original source</p>
-              <h3>Source remains visible</h3>
+              <p className="eyebrow">Preservation categories</p>
+              <h3>What the vault can hold</h3>
             </div>
 
-            <div className="source-preview">
-              <div className="source-page">
-                <span>Source Scan Preview</span>
-              </div>
+            <div className="vault-category-grid">
+              {vaultCategories.map((category) => (
+                <span className="vault-category" key={category}>
+                  {category}
+                </span>
+              ))}
+            </div>
+
+            <div className="principle-card">
+              <h4>Continuity-first preservation</h4>
               <p>
-                A real version of this panel will show the scanned page, image,
-                typed transcript, letter, or imported record beside the suggested
-                facts.
+                The vault is not a dumping ground. It is a calm archive where
+                family artifacts can remain meaningful, searchable, and connected
+                to reviewed research.
               </p>
             </div>
           </article>
 
           <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Review cards</p>
-              <h3>Suggested genealogy facts</h3>
+              <p className="eyebrow">Vault queue</p>
+              <h3>Memory items awaiting care</h3>
             </div>
 
-            <div className="fact-list">
-              {reviewFacts.map((fact) => (
-                <article className="fact-card" key={`${fact.label}-${fact.value}`}>
-                  <div className="fact-card-header">
-                    <div>
-                      <p className="card-label">{fact.label}</p>
-                      <h4>{fact.value}</h4>
-                    </div>
-                    <span className={`confidence confidence-${fact.confidence.toLowerCase()}`}>
-                      {fact.confidence}
-                    </span>
+            <div className="vault-list">
+              {vaultItems.map((item) => (
+                <article className="vault-item" key={item.title}>
+                  <div>
+                    <p className="card-label">{item.type}</p>
+                    <h4>{item.title}</h4>
+                    <p>{item.source}</p>
                   </div>
-
-                  <dl className="fact-meta">
-                    <div>
-                      <dt>Source</dt>
-                      <dd>{fact.source}</dd>
-                    </div>
-                    <div>
-                      <dt>Status</dt>
-                      <dd>{fact.status}</dd>
-                    </div>
-                  </dl>
-
-                  <div className="review-actions">
-                    {reviewActions.map((action) => (
-                      <button
-                        className={action === "Accept" ? "action-button primary-action" : "action-button"}
-                        key={action}
-                      >
-                        {action}
-                      </button>
-                    ))}
-                  </div>
+                  <span>{item.status}</span>
                 </article>
               ))}
             </div>
           </article>
+        </section>
+
+        <section className="principle-grid" aria-label="Memory Vault principles">
+          {preservationPrinciples.map((principle, index) => (
+            <article className="principle-tile" key={principle}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{principle}</p>
+            </article>
+          ))}
         </section>
       </section>
     </main>
