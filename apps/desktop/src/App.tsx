@@ -3,43 +3,46 @@ import lifeLegacyMark from "./assets/brand/lifelegacy-mark.svg";
 
 const modules = [
   "Intake",
+  "SDR",
   "Review",
-  "Ledger",
-  "Archive",
   "Timeline",
-  "Narrative",
-  "Vault",
+  "Biography",
+  "Memory Vault",
   "Export Forge",
 ];
 
-const recordFormats = [
-  "PDF",
-  "JPG / PNG / TIFF",
-  "Scans",
-  "Photographs",
-  "Typed Notes",
-  "DOCX / ODT / TXT",
-  "CSV",
-  "GEDCOM",
+const reviewFacts = [
+  {
+    label: "Possible Person",
+    value: "Elizabeth Carter",
+    source: "1900 Census Household Scan",
+    confidence: "High",
+    status: "Pending review",
+  },
+  {
+    label: "Possible Birth Year",
+    value: "1878",
+    source: "1900 Census Household Scan",
+    confidence: "Medium",
+    status: "Needs confirmation",
+  },
+  {
+    label: "Possible Relationship",
+    value: "Samuel Carter — father",
+    source: "Family Bible Page",
+    confidence: "Medium",
+    status: "Pending review",
+  },
+  {
+    label: "Possible Death Notice",
+    value: "Obituary mentions Louisville, Kentucky",
+    source: "Obituary Transcript",
+    confidence: "High",
+    status: "Ready for review",
+  },
 ];
 
-const sourceQueue = [
-  {
-    title: "1900 Census Household Scan",
-    type: "PDF",
-    status: "Ready for assisted extraction",
-  },
-  {
-    title: "Family Bible Page",
-    type: "Image",
-    status: "Waiting for review setup",
-  },
-  {
-    title: "Obituary Transcript",
-    type: "Text",
-    status: "Ready for source card creation",
-  },
-];
+const reviewActions = ["Accept", "Edit", "Reject", "Review Later"];
 
 function App() {
   return (
@@ -60,7 +63,7 @@ function App() {
         <nav className="module-nav" aria-label="LifeLegacy workspaces">
           {modules.map((module, index) => (
             <button
-              className={index === 0 ? "module-button active" : "module-button"}
+              className={index === 2 ? "module-button active" : "module-button"}
               key={module}
             >
               {module}
@@ -69,102 +72,107 @@ function App() {
         </nav>
 
         <div className="sidebar-note">
-          <p>Assistant-first design</p>
-          <span>Built to reduce data-entry friction, not replace your genealogy tools.</span>
+          <p>Human review required</p>
+          <span>
+            SDR suggestions become trusted genealogy data only after researcher
+            validation.
+          </span>
         </div>
       </aside>
 
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Genealogy Workflow Assistant</p>
-            <h2>Universal Record Intake</h2>
+            <p className="eyebrow">Review Desk</p>
+            <h2>Suggested Facts</h2>
           </div>
-          <button className="ghost-button">Project Settings</button>
+          <button className="ghost-button">Review Settings</button>
         </header>
 
-        <section className="hero-panel intake-hero">
+        <section className="hero-panel review-hero">
           <div>
-            <p className="eyebrow">Source-first preservation</p>
-            <h3>Bring the record. LifeLegacy helps with the bottleneck.</h3>
+            <p className="eyebrow">Source-linked validation</p>
+            <h3>SDR found possible genealogy details. You decide what becomes record.</h3>
             <p className="hero-copy">
-              Import scans, PDFs, photographs, typed notes, and family-history
-              documents. LifeLegacy assists with extraction, keeps the original
-              source visible, and prepares reviewed data for the genealogy
-              applications researchers already use.
+              The Review Desk keeps the researcher in control. Each suggestion
+              remains connected to its original source so names, dates, places,
+              relationships, and notes can be accepted, edited, rejected, or held
+              for later review without losing evidence.
             </p>
           </div>
 
-          <div className="intake-card">
-            <p className="card-label">Start here</p>
-            <h4>Import Genealogical Records</h4>
+          <div className="review-summary-card">
+            <p className="card-label">Current review queue</p>
+            <h4>4 suggestions awaiting review</h4>
             <p>
-              Add a record or folder of sources to begin the assisted intake
-              workflow.
+              Nothing is final until approved. This protects source integrity and
+              reduces data-entry overwhelm.
             </p>
-            <button className="primary-button">Import Records</button>
           </div>
         </section>
 
-        <section className="intake-layout">
-          <article className="panel-card">
+        <section className="review-layout">
+          <article className="panel-card source-preview-card">
             <div className="section-heading">
-              <p className="eyebrow">Supported sources</p>
-              <h3>Record formats</h3>
+              <p className="eyebrow">Original source</p>
+              <h3>Source remains visible</h3>
             </div>
 
-            <div className="format-grid">
-              {recordFormats.map((format) => (
-                <span className="format-pill" key={format}>
-                  {format}
-                </span>
-              ))}
+            <div className="source-preview">
+              <div className="source-page">
+                <span>Source Scan Preview</span>
+              </div>
+              <p>
+                A real version of this panel will show the scanned page, image,
+                typed transcript, letter, or imported record beside the suggested
+                facts.
+              </p>
             </div>
           </article>
 
           <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Intake queue preview</p>
-              <h3>Source queue</h3>
+              <p className="eyebrow">Review cards</p>
+              <h3>Suggested genealogy facts</h3>
             </div>
 
-            <div className="queue-list">
-              {sourceQueue.map((source) => (
-                <div className="queue-item" key={source.title}>
-                  <div>
-                    <h4>{source.title}</h4>
-                    <p>{source.status}</p>
+            <div className="fact-list">
+              {reviewFacts.map((fact) => (
+                <article className="fact-card" key={`${fact.label}-${fact.value}`}>
+                  <div className="fact-card-header">
+                    <div>
+                      <p className="card-label">{fact.label}</p>
+                      <h4>{fact.value}</h4>
+                    </div>
+                    <span className={`confidence confidence-${fact.confidence.toLowerCase()}`}>
+                      {fact.confidence}
+                    </span>
                   </div>
-                  <span>{source.type}</span>
-                </div>
+
+                  <dl className="fact-meta">
+                    <div>
+                      <dt>Source</dt>
+                      <dd>{fact.source}</dd>
+                    </div>
+                    <div>
+                      <dt>Status</dt>
+                      <dd>{fact.status}</dd>
+                    </div>
+                  </dl>
+
+                  <div className="review-actions">
+                    {reviewActions.map((action) => (
+                      <button
+                        className={action === "Accept" ? "action-button primary-action" : "action-button"}
+                        key={action}
+                      >
+                        {action}
+                      </button>
+                    ))}
+                  </div>
+                </article>
               ))}
             </div>
-          </article>
-        </section>
-
-        <section className="workflow-grid" aria-label="LifeLegacy workflow">
-          <article className="workflow-card">
-            <span>01</span>
-            <h4>Import</h4>
-            <p>Gather historical records into a calm intake workspace.</p>
-          </article>
-
-          <article className="workflow-card">
-            <span>02</span>
-            <h4>Review</h4>
-            <p>Confirm suggested names, dates, places, and relationships.</p>
-          </article>
-
-          <article className="workflow-card">
-            <span>03</span>
-            <h4>Preserve</h4>
-            <p>Keep every accepted fact connected to its original source.</p>
-          </article>
-
-          <article className="workflow-card">
-            <span>04</span>
-            <h4>Export</h4>
-            <p>Prepare clean transfer packages for genealogy applications.</p>
           </article>
         </section>
       </section>
