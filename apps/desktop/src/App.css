@@ -172,8 +172,7 @@ h1 {
 
 .hero-panel,
 .panel-card,
-.vault-summary-card,
-.vault-item,
+.timeline-summary-card,
 .principle-tile {
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -188,7 +187,7 @@ h1 {
   padding: 32px;
 }
 
-.vault-hero {
+.timeline-hero {
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
 }
 
@@ -206,7 +205,7 @@ h1 {
   line-height: 1.7;
 }
 
-.vault-summary-card {
+.timeline-summary-card {
   padding: 24px;
   display: grid;
   align-content: center;
@@ -214,19 +213,19 @@ h1 {
   background: var(--panel);
 }
 
-.vault-summary-card h4 {
+.timeline-summary-card h4 {
   color: var(--heritage-blue);
   font-size: 1.45rem;
   margin-bottom: 0;
 }
 
-.vault-summary-card p {
+.timeline-summary-card p {
   line-height: 1.55;
 }
 
-.vault-layout {
+.timeline-layout {
   display: grid;
-  grid-template-columns: 0.88fr 1.12fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 18px;
   align-items: start;
 }
@@ -241,75 +240,112 @@ h1 {
   margin-bottom: 18px;
 }
 
-.vault-category-grid {
+.timeline-list {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.timeline-year {
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.timeline-content {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  background: var(--panel);
+}
+
+.timeline-item-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 12px;
 }
 
-.vault-category {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 8px 13px;
-  border: 1px solid rgba(27, 58, 87, 0.16);
+.timeline-content h4 {
+  color: var(--legacy-navy);
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.source-line {
+  margin-bottom: 0;
+  color: var(--archive-charcoal);
+  line-height: 1.5;
+}
+
+.confidence {
   border-radius: 999px;
-  color: var(--heritage-blue);
-  background: rgba(27, 58, 87, 0.06);
-  font-weight: 800;
+  padding: 7px 11px;
+  font-size: 0.78rem;
+  font-weight: 900;
 }
 
+.confidence-high {
+  color: var(--legacy-navy);
+  background: rgba(95, 127, 107, 0.18);
+}
+
+.confidence-medium {
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+}
+
+.confidence-low {
+  color: #7b2f2f;
+  background: rgba(123, 47, 47, 0.12);
+}
+
+.insight-card,
 .principle-card {
-  margin-top: 18px;
   padding: 18px;
   border-radius: 20px;
-  color: white;
-  background: linear-gradient(135deg, var(--legacy-navy), var(--heritage-blue));
+  margin-bottom: 14px;
 }
 
+.insight-card h4,
 .principle-card h4 {
   margin-bottom: 8px;
-  color: var(--heritage-gold);
 }
 
+.insight-card p,
 .principle-card p {
   margin-bottom: 0;
   line-height: 1.55;
 }
 
-.vault-list {
-  display: grid;
-  gap: 12px;
-}
-
-.vault-item {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px;
-  background: var(--panel);
-}
-
-.vault-item h4 {
+.insight-card.strong {
   color: var(--legacy-navy);
-  font-size: 1.18rem;
-  margin-bottom: 6px;
+  background: rgba(95, 127, 107, 0.14);
 }
 
-.vault-item p {
-  margin-bottom: 0;
-  line-height: 1.45;
-}
-
-.vault-item span {
-  align-self: start;
-  border-radius: 999px;
-  padding: 7px 11px;
+.insight-card.caution {
   color: var(--legacy-navy);
-  background: rgba(199, 154, 74, 0.24);
-  font-weight: 900;
-  font-size: 0.78rem;
-  white-space: nowrap;
+  background: rgba(199, 154, 74, 0.2);
+}
+
+.principle-card {
+  color: white;
+  background: linear-gradient(135deg, var(--legacy-navy), var(--heritage-blue));
+}
+
+.principle-card h4 {
+  color: var(--heritage-gold);
 }
 
 .principle-grid {
@@ -351,18 +387,23 @@ h1 {
     position: static;
   }
 
-  .vault-hero,
-  .vault-layout,
+  .timeline-hero,
+  .timeline-layout,
   .principle-grid {
     grid-template-columns: 1fr;
   }
 
-  .topbar {
+  .topbar,
+  .timeline-item-header {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .vault-item {
-    flex-direction: column;
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-year {
+    min-height: 54px;
   }
 }

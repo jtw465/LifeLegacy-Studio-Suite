@@ -11,47 +11,42 @@ const modules = [
   "Export Forge",
 ];
 
-const vaultCategories = [
-  "Photos",
-  "Letters",
-  "Audio Memories",
-  "Documents",
-  "Keepsakes",
-  "Family Notes",
-];
-
-const vaultItems = [
+const timelineEvents = [
   {
-    title: "Grandmother’s Wedding Portrait",
-    type: "Photo",
-    status: "Metadata needed",
-    source: "Family photo box",
+    year: "1878",
+    title: "Possible birth year",
+    location: "Louisville, Kentucky",
+    source: "1900 Census Household Scan",
+    confidence: "Medium",
   },
   {
-    title: "Letter from Louisville",
-    type: "Letter",
-    status: "Ready for preservation",
-    source: "Envelope bundle",
+    year: "1901",
+    title: "Possible marriage reference",
+    location: "Jefferson County, Kentucky",
+    source: "Family Bible Page",
+    confidence: "Low",
   },
   {
-    title: "Uncle’s Recorded Story",
-    type: "Audio",
-    status: "Awaiting transcript",
-    source: "Cassette transfer",
+    year: "1924",
+    title: "Residence confirmed",
+    location: "Louisville, Kentucky",
+    source: "City Directory Transcript",
+    confidence: "High",
   },
   {
-    title: "Family History Notes",
-    type: "Document",
-    status: "Linked to SDR",
-    source: "Typed manuscript",
+    year: "1942",
+    title: "Obituary notice located",
+    location: "Louisville, Kentucky",
+    source: "Obituary Transcript",
+    confidence: "High",
   },
 ];
 
-const preservationPrinciples = [
-  "Original artifact remains preserved",
-  "Memory items can connect to reviewed facts",
-  "Photos, letters, and recordings keep human context",
-  "Nothing becomes final without researcher review",
+const timelinePrinciples = [
+  "Events remain source-linked",
+  "Uncertain dates stay clearly marked",
+  "Timeline drafts support review, not blind automation",
+  "Chronology becomes clearer before export",
 ];
 
 function App() {
@@ -73,7 +68,7 @@ function App() {
         <nav className="module-nav" aria-label="LifeLegacy workspaces">
           {modules.map((module, index) => (
             <button
-              className={index === 5 ? "module-button active" : "module-button"}
+              className={index === 3 ? "module-button active" : "module-button"}
               key={module}
             >
               {module}
@@ -82,10 +77,10 @@ function App() {
         </nav>
 
         <div className="sidebar-note">
-          <p>Emotional archive</p>
+          <p>Continuity builder</p>
           <span>
-            The Memory Vault preserves the human texture around genealogy
-            research: photos, letters, audio, and keepsakes.
+            The Timeline Builder turns reviewed evidence into a calm chronological
+            view without replacing researcher judgment.
           </span>
         </div>
       </aside>
@@ -93,82 +88,96 @@ function App() {
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Memory Vault</p>
-            <h2>Emotional Archive</h2>
+            <p className="eyebrow">Timeline Builder</p>
+            <h2>Historical Continuity</h2>
           </div>
-          <button className="ghost-button">Vault Settings</button>
+          <button className="ghost-button">Timeline Settings</button>
         </header>
 
-        <section className="hero-panel vault-hero">
+        <section className="hero-panel timeline-hero">
           <div>
-            <p className="eyebrow">Preserve more than facts</p>
-            <h3>Family history is not only dates. It is memory, voice, image, and context.</h3>
+            <p className="eyebrow">Reviewed evidence into sequence</p>
+            <h3>LifeLegacy helps scattered facts become a readable life path.</h3>
             <p className="hero-copy">
-              The Memory Vault gives photos, letters, recordings, documents, and
-              keepsakes a dedicated preservation space. These items can support
-              genealogy research while retaining their emotional and archival
-              value.
+              Timeline Builder collects reviewed or review-ready events and
+              arranges them into chronological continuity. It shows uncertainty
+              clearly, keeps sources attached, and helps researchers see where
+              the story is strong, weak, or still waiting for evidence.
             </p>
           </div>
 
-          <div className="vault-summary-card">
-            <p className="card-label">Vault status</p>
-            <h4>4 memory items prepared</h4>
+          <div className="timeline-summary-card">
+            <p className="card-label">Timeline draft</p>
+            <h4>4 events reconstructed</h4>
             <p>
-              Memory items remain source-linked and reviewable before becoming
-              part of the preserved family record.
+              These events are not final conclusions. They are structured
+              continuity suggestions built from source-linked evidence.
             </p>
           </div>
         </section>
 
-        <section className="vault-layout">
+        <section className="timeline-layout">
           <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Preservation categories</p>
-              <h3>What the vault can hold</h3>
+              <p className="eyebrow">Chronology</p>
+              <h3>Draft event sequence</h3>
             </div>
 
-            <div className="vault-category-grid">
-              {vaultCategories.map((category) => (
-                <span className="vault-category" key={category}>
-                  {category}
-                </span>
-              ))}
-            </div>
-
-            <div className="principle-card">
-              <h4>Continuity-first preservation</h4>
-              <p>
-                The vault is not a dumping ground. It is a calm archive where
-                family artifacts can remain meaningful, searchable, and connected
-                to reviewed research.
-              </p>
-            </div>
-          </article>
-
-          <article className="panel-card">
-            <div className="section-heading">
-              <p className="eyebrow">Vault queue</p>
-              <h3>Memory items awaiting care</h3>
-            </div>
-
-            <div className="vault-list">
-              {vaultItems.map((item) => (
-                <article className="vault-item" key={item.title}>
-                  <div>
-                    <p className="card-label">{item.type}</p>
-                    <h4>{item.title}</h4>
-                    <p>{item.source}</p>
+            <div className="timeline-list">
+              {timelineEvents.map((event) => (
+                <article className="timeline-item" key={`${event.year}-${event.title}`}>
+                  <div className="timeline-year">{event.year}</div>
+                  <div className="timeline-content">
+                    <div className="timeline-item-header">
+                      <div>
+                        <p className="card-label">{event.location}</p>
+                        <h4>{event.title}</h4>
+                      </div>
+                      <span className={`confidence confidence-${event.confidence.toLowerCase()}`}>
+                        {event.confidence}
+                      </span>
+                    </div>
+                    <p className="source-line">Source: {event.source}</p>
                   </div>
-                  <span>{item.status}</span>
                 </article>
               ))}
             </div>
           </article>
+
+          <article className="panel-card">
+            <div className="section-heading">
+              <p className="eyebrow">Continuity check</p>
+              <h3>What the timeline reveals</h3>
+            </div>
+
+            <div className="insight-card strong">
+              <h4>Strong evidence cluster</h4>
+              <p>
+                Louisville appears across multiple sources, suggesting a stable
+                location pattern worth reviewing.
+              </p>
+            </div>
+
+            <div className="insight-card caution">
+              <h4>Needs review</h4>
+              <p>
+                The possible 1901 marriage reference is currently low confidence
+                and should not be exported until verified.
+              </p>
+            </div>
+
+            <div className="principle-card">
+              <h4>Timeline is an assistant</h4>
+              <p>
+                LifeLegacy organizes chronological evidence so the researcher can
+                see continuity, gaps, and conflicts more clearly.
+              </p>
+            </div>
+          </article>
         </section>
 
-        <section className="principle-grid" aria-label="Memory Vault principles">
-          {preservationPrinciples.map((principle, index) => (
+        <section className="principle-grid" aria-label="Timeline principles">
+          {timelinePrinciples.map((principle, index) => (
             <article className="principle-tile" key={principle}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <p>{principle}</p>
@@ -180,4 +189,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
