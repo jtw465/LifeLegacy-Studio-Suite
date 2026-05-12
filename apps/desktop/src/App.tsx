@@ -11,42 +11,43 @@ const modules = [
   "Export Forge",
 ];
 
-const timelineEvents = [
+const biographySections = [
   {
-    year: "1878",
-    title: "Possible birth year",
-    location: "Louisville, Kentucky",
-    source: "1900 Census Household Scan",
+    title: "Early Life",
+    summary:
+      "Current reviewed evidence suggests Elizabeth Carter may have been born in Louisville, Kentucky around 1878.",
     confidence: "Medium",
+    sources: [
+      "1900 Census Household Scan",
+      "Family Bible Page",
+    ],
   },
   {
-    year: "1901",
-    title: "Possible marriage reference",
-    location: "Jefferson County, Kentucky",
-    source: "Family Bible Page",
+    title: "Marriage & Family",
+    summary:
+      "A possible marriage reference appears in the Family Bible material, though the timeline still requires verification.",
     confidence: "Low",
+    sources: [
+      "Family Bible Page",
+    ],
   },
   {
-    year: "1924",
-    title: "Residence confirmed",
-    location: "Louisville, Kentucky",
-    source: "City Directory Transcript",
+    title: "Residence & Community",
+    summary:
+      "Multiple reviewed sources indicate recurring connections to Louisville, Kentucky across several decades.",
     confidence: "High",
-  },
-  {
-    year: "1942",
-    title: "Obituary notice located",
-    location: "Louisville, Kentucky",
-    source: "Obituary Transcript",
-    confidence: "High",
+    sources: [
+      "City Directory Transcript",
+      "Obituary Transcript",
+    ],
   },
 ];
 
-const timelinePrinciples = [
-  "Events remain source-linked",
-  "Uncertain dates stay clearly marked",
-  "Timeline drafts support review, not blind automation",
-  "Chronology becomes clearer before export",
+const biographyPrinciples = [
+  "Narratives remain evidence-aware",
+  "Draft text stays source-linked",
+  "Uncertainty remains visible",
+  "Researchers remain final editors",
 ];
 
 function App() {
@@ -68,7 +69,7 @@ function App() {
         <nav className="module-nav" aria-label="LifeLegacy workspaces">
           {modules.map((module, index) => (
             <button
-              className={index === 3 ? "module-button active" : "module-button"}
+              className={index === 4 ? "module-button active" : "module-button"}
               key={module}
             >
               {module}
@@ -77,10 +78,10 @@ function App() {
         </nav>
 
         <div className="sidebar-note">
-          <p>Continuity builder</p>
+          <p>Evidence-aware narrative</p>
           <span>
-            The Timeline Builder turns reviewed evidence into a calm chronological
-            view without replacing researcher judgment.
+            Biography Builder transforms reviewed continuity into readable
+            narrative drafts without hiding uncertainty.
           </span>
         </div>
       </aside>
@@ -88,56 +89,67 @@ function App() {
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">Timeline Builder</p>
-            <h2>Historical Continuity</h2>
+            <p className="eyebrow">Biography Builder</p>
+            <h2>Continuity Narrative</h2>
           </div>
-          <button className="ghost-button">Timeline Settings</button>
+          <button className="ghost-button">Biography Settings</button>
         </header>
 
-        <section className="hero-panel timeline-hero">
+        <section className="hero-panel biography-hero">
           <div>
-            <p className="eyebrow">Reviewed evidence into sequence</p>
-            <h3>LifeLegacy helps scattered facts become a readable life path.</h3>
+            <p className="eyebrow">Reviewed evidence into story</p>
+            <h3>LifeLegacy helps family continuity become readable narrative.</h3>
             <p className="hero-copy">
-              Timeline Builder collects reviewed or review-ready events and
-              arranges them into chronological continuity. It shows uncertainty
-              clearly, keeps sources attached, and helps researchers see where
-              the story is strong, weak, or still waiting for evidence.
+              Biography Builder transforms reviewed evidence and timeline
+              continuity into draft narrative sections. Sources remain attached,
+              uncertainty remains visible, and the researcher remains the final
+              editor of the story.
             </p>
           </div>
 
-          <div className="timeline-summary-card">
-            <p className="card-label">Timeline draft</p>
-            <h4>4 events reconstructed</h4>
+          <div className="biography-summary-card">
+            <p className="card-label">Draft narrative</p>
+            <h4>3 biography sections prepared</h4>
             <p>
-              These events are not final conclusions. They are structured
-              continuity suggestions built from source-linked evidence.
+              Biography drafts are continuity assistants, not automated truth
+              generators.
             </p>
           </div>
         </section>
 
-        <section className="timeline-layout">
+        <section className="biography-layout">
           <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Chronology</p>
-              <h3>Draft event sequence</h3>
+              <p className="eyebrow">Narrative sections</p>
+              <h3>Biography continuity draft</h3>
             </div>
 
-            <div className="timeline-list">
-              {timelineEvents.map((event) => (
-                <article className="timeline-item" key={`${event.year}-${event.title}`}>
-                  <div className="timeline-year">{event.year}</div>
-                  <div className="timeline-content">
-                    <div className="timeline-item-header">
-                      <div>
-                        <p className="card-label">{event.location}</p>
-                        <h4>{event.title}</h4>
-                      </div>
-                      <span className={`confidence confidence-${event.confidence.toLowerCase()}`}>
-                        {event.confidence}
-                      </span>
+            <div className="biography-list">
+              {biographySections.map((section) => (
+                <article className="biography-card" key={section.title}>
+                  <div className="biography-header">
+                    <div>
+                      <p className="card-label">Draft section</p>
+                      <h4>{section.title}</h4>
                     </div>
-                    <p className="source-line">Source: {event.source}</p>
+
+                    <span
+                      className={`confidence confidence-${section.confidence.toLowerCase()}`}
+                    >
+                      {section.confidence}
+                    </span>
+                  </div>
+
+                  <p className="biography-summary">
+                    {section.summary}
+                  </p>
+
+                  <div className="source-tags">
+                    {section.sources.map((source) => (
+                      <span className="source-tag" key={source}>
+                        {source}
+                      </span>
+                    ))}
                   </div>
                 </article>
               ))}
@@ -146,38 +158,38 @@ function App() {
 
           <article className="panel-card">
             <div className="section-heading">
-              <p className="eyebrow">Continuity check</p>
-              <h3>What the timeline reveals</h3>
+              <p className="eyebrow">Continuity guidance</p>
+              <h3>What Biography Builder emphasizes</h3>
             </div>
 
             <div className="insight-card strong">
-              <h4>Strong evidence cluster</h4>
+              <h4>Source transparency</h4>
               <p>
-                Louisville appears across multiple sources, suggesting a stable
-                location pattern worth reviewing.
+                Narrative text remains tied to evidence instead of becoming
+                disconnected family folklore.
               </p>
             </div>
 
             <div className="insight-card caution">
-              <h4>Needs review</h4>
+              <h4>Uncertainty remains visible</h4>
               <p>
-                The possible 1901 marriage reference is currently low confidence
-                and should not be exported until verified.
+                Low-confidence material stays clearly marked so researchers can
+                revisit uncertain continuity later.
               </p>
             </div>
 
             <div className="principle-card">
-              <h4>Timeline is an assistant</h4>
+              <h4>Human-centered storytelling</h4>
               <p>
-                LifeLegacy organizes chronological evidence so the researcher can
-                see continuity, gaps, and conflicts more clearly.
+                Biography Builder supports continuity writing while preserving
+                the researcher’s judgment, interpretation, and voice.
               </p>
             </div>
           </article>
         </section>
 
-        <section className="principle-grid" aria-label="Timeline principles">
-          {timelinePrinciples.map((principle, index) => (
+        <section className="principle-grid" aria-label="Biography principles">
+          {biographyPrinciples.map((principle, index) => (
             <article className="principle-tile" key={principle}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <p>{principle}</p>
@@ -189,4 +201,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

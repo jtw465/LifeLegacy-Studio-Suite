@@ -172,7 +172,8 @@ h1 {
 
 .hero-panel,
 .panel-card,
-.timeline-summary-card,
+.biography-summary-card,
+.biography-card,
 .principle-tile {
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -187,7 +188,7 @@ h1 {
   padding: 32px;
 }
 
-.timeline-hero {
+.biography-hero {
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
 }
 
@@ -205,7 +206,7 @@ h1 {
   line-height: 1.7;
 }
 
-.timeline-summary-card {
+.biography-summary-card {
   padding: 24px;
   display: grid;
   align-content: center;
@@ -213,19 +214,19 @@ h1 {
   background: var(--panel);
 }
 
-.timeline-summary-card h4 {
+.biography-summary-card h4 {
   color: var(--heritage-blue);
   font-size: 1.45rem;
   margin-bottom: 0;
 }
 
-.timeline-summary-card p {
+.biography-summary-card p {
   line-height: 1.55;
 }
 
-.timeline-layout {
+.biography-layout {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 18px;
   align-items: start;
 }
@@ -240,53 +241,33 @@ h1 {
   margin-bottom: 18px;
 }
 
-.timeline-list {
+.biography-list {
   display: grid;
   gap: 16px;
 }
 
-.timeline-item {
-  display: grid;
-  grid-template-columns: 86px 1fr;
-  gap: 16px;
-  align-items: stretch;
-}
-
-.timeline-year {
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  color: var(--legacy-navy);
-  background: rgba(199, 154, 74, 0.24);
-  font-weight: 900;
-  font-size: 1.1rem;
-}
-
-.timeline-content {
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 18px;
+.biography-card {
+  padding: 20px;
   background: var(--panel);
 }
 
-.timeline-item-header {
+.biography-header {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.timeline-content h4 {
+.biography-card h4 {
   color: var(--legacy-navy);
-  font-size: 1.2rem;
+  font-size: 1.24rem;
   margin-bottom: 0;
 }
 
-.source-line {
-  margin-bottom: 0;
-  color: var(--archive-charcoal);
-  line-height: 1.5;
+.biography-summary {
+  line-height: 1.7;
+  margin-bottom: 16px;
 }
 
 .confidence {
@@ -309,6 +290,21 @@ h1 {
 .confidence-low {
   color: #7b2f2f;
   background: rgba(123, 47, 47, 0.12);
+}
+
+.source-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.source-tag {
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--heritage-blue);
+  background: rgba(27, 58, 87, 0.08);
+  font-weight: 800;
+  font-size: 0.82rem;
 }
 
 .insight-card,
@@ -387,23 +383,15 @@ h1 {
     position: static;
   }
 
-  .timeline-hero,
-  .timeline-layout,
+  .biography-hero,
+  .biography-layout,
   .principle-grid {
     grid-template-columns: 1fr;
   }
 
   .topbar,
-  .timeline-item-header {
+  .biography-header {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .timeline-item {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline-year {
-    min-height: 54px;
   }
 }
