@@ -8,6 +8,7 @@ interface AppShellProps {
   settingsLabel: string;
   sidebarTitle: string;
   sidebarNote: string;
+  onWorkspaceChange: (workspace: WorkspaceName) => void;
   children: React.ReactNode;
 }
 
@@ -18,6 +19,7 @@ export function AppShell({
   settingsLabel,
   sidebarTitle,
   sidebarNote,
+  onWorkspaceChange,
   children,
 }: AppShellProps) {
   return (
@@ -44,6 +46,8 @@ export function AppShell({
                   : "module-button"
               }
               key={workspace}
+              onClick={() => onWorkspaceChange(workspace)}
+              type="button"
             >
               {workspace}
             </button>
@@ -62,7 +66,9 @@ export function AppShell({
             <p className="eyebrow">{eyebrow}</p>
             <h2>{title}</h2>
           </div>
-          <button className="ghost-button">{settingsLabel}</button>
+          <button className="ghost-button" type="button">
+            {settingsLabel}
+          </button>
         </header>
 
         {children}
