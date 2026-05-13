@@ -434,6 +434,63 @@ h1 {
   background: var(--heritage-gold);
 }
 
+.timeline-event-list {
+  display: grid;
+  gap: 18px;
+}
+
+.timeline-event-card {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.timeline-year-badge {
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+  font-weight: 900;
+  font-size: 1.12rem;
+  box-shadow: var(--soft-shadow);
+}
+
+.timeline-event-body {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.timeline-event-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.timeline-event-body h4 {
+  color: var(--legacy-navy);
+  font-size: 1.22rem;
+  margin-bottom: 0;
+}
+
+.timeline-description {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.timeline-source {
+  color: var(--heritage-blue);
+  font-weight: 800;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
 @media (max-width: 1000px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -455,6 +512,18 @@ h1 {
   .record-card-header,
   .review-fact-header,
   .detail-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+  .timeline-event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-year-badge {
+    min-height: 58px;
+  }
+
+  .timeline-event-header {
     align-items: flex-start;
     flex-direction: column;
   }

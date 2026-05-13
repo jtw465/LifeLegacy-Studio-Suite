@@ -5,6 +5,7 @@ import type { WorkspaceName } from "./data/workspaces";
 import { workspaceDetails } from "./data/workspaceDetails";
 import { sourceRecords } from "./data/sourceRecords";
 import { reviewActions, reviewFacts } from "./data/reviewFacts";
+import { timelineEvents } from "./data/timelineEvents";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -260,6 +261,32 @@ function App() {
                     {action}
                   </button>
                 ))}
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
+
+      {activeWorkspace === "Timeline" && (
+        <section className="timeline-event-list" aria-label="Timeline event sequence">
+          {timelineEvents.map((event) => (
+            <article className="timeline-event-card" key={event.id}>
+              <div className="timeline-year-badge">{event.year}</div>
+
+              <div className="timeline-event-body">
+                <div className="timeline-event-header">
+                  <div>
+                    <p className="card-label">{event.location}</p>
+                    <h4>{event.title}</h4>
+                  </div>
+
+                  <span className={`confidence confidence-${event.confidence.toLowerCase()}`}>
+                    {event.confidence}
+                  </span>
+                </div>
+
+                <p className="timeline-description">{event.description}</p>
+                <p className="timeline-source">Source: {event.sourceTitle}</p>
               </div>
             </article>
           ))}
