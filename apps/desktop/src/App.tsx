@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { AppShell } from "./components/AppShell";
 import type { WorkspaceName } from "./data/workspaces";
+import { workspaceDetails } from "./data/workspaceDetails";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -145,6 +146,7 @@ function App() {
     useState<WorkspaceName>("Export Forge");
 
   const content = workspaceContent[activeWorkspace];
+  const details = workspaceDetails[activeWorkspace];
 
   return (
     <AppShell
@@ -168,6 +170,21 @@ function App() {
           <h4>{content.summaryTitle}</h4>
           <p>{content.summaryCopy}</p>
         </div>
+      </section>
+
+      <section className="detail-grid" aria-label={`${activeWorkspace} details`}>
+        {details.map((detail) => (
+          <article className="detail-card" key={`${detail.label}-${detail.title}`}>
+            <div className="detail-card-header">
+              <div>
+                <p className="card-label">{detail.label}</p>
+                <h4>{detail.title}</h4>
+              </div>
+              <span>{detail.status}</span>
+            </div>
+            <p>{detail.description}</p>
+          </article>
+        ))}
       </section>
 
       <section className="principle-grid" aria-label="LifeLegacy principles">

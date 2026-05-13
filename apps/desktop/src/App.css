@@ -192,6 +192,53 @@ h1 {
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
 }
 
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.detail-card {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.detail-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.detail-card h4 {
+  color: var(--legacy-navy);
+  font-size: 1.18rem;
+  margin-bottom: 0;
+}
+
+.detail-card p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.detail-card-header span {
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+  font-weight: 900;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.detail-grid {
+  grid-template-columns: 1fr;
+}
+
 .hero-panel h3 {
   color: var(--legacy-navy);
   font-size: clamp(2rem, 4vw, 4rem);
