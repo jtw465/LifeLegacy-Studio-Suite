@@ -361,6 +361,79 @@ h1 {
   margin-bottom: 0;
 }
 
+.review-fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.review-fact-card {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.review-fact-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.review-fact-card h4 {
+  color: var(--legacy-navy);
+  font-size: 1.18rem;
+  margin-bottom: 0;
+}
+
+.review-fact-meta {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.review-fact-meta div {
+  display: grid;
+  gap: 4px;
+}
+
+.review-fact-meta dt {
+  color: var(--sage-leaf);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.review-fact-meta dd {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.review-action-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--heritage-blue);
+  background: rgba(27, 58, 87, 0.08);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary-review-action {
+  color: var(--legacy-navy);
+  background: var(--heritage-gold);
+}
+
 @media (max-width: 1000px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -372,6 +445,7 @@ h1 {
 
   .hero-panel,
   .record-grid,
+  .review-fact-grid,
   .detail-grid,
   .principle-grid {
     grid-template-columns: 1fr;
@@ -379,6 +453,7 @@ h1 {
 
   .topbar,
   .record-card-header,
+  .review-fact-header,
   .detail-card-header {
     align-items: flex-start;
     flex-direction: column;

@@ -4,6 +4,7 @@ import { AppShell } from "./components/AppShell";
 import type { WorkspaceName } from "./data/workspaces";
 import { workspaceDetails } from "./data/workspaceDetails";
 import { sourceRecords } from "./data/sourceRecords";
+import { reviewActions, reviewFacts } from "./data/reviewFacts";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -212,6 +213,58 @@ function App() {
           </article>
         ))}
       </section>
+
+      {activeWorkspace === "Review" && (
+        <section className="review-fact-grid" aria-label="Review fact suggestions">
+          {reviewFacts.map((fact) => (
+            <article className="review-fact-card" key={fact.id}>
+              <div className="review-fact-header">
+                <div>
+                  <p className="card-label">{fact.label}</p>
+                  <h4>{fact.value}</h4>
+                </div>
+
+                <span className={`confidence confidence-${fact.confidence.toLowerCase()}`}>
+                  {fact.confidence}
+                </span>
+              </div>
+
+              <dl className="review-fact-meta">
+                <div>
+                  <dt>Source</dt>
+                  <dd>{fact.sourceTitle}</dd>
+                </div>
+
+                <div>
+                  <dt>Status</dt>
+                  <dd>{fact.status}</dd>
+                </div>
+
+                <div>
+                  <dt>Evidence Note</dt>
+                  <dd>{fact.evidenceNote}</dd>
+                </div>
+              </dl>
+
+              <div className="review-actions">
+                {reviewActions.map((action) => (
+                  <button
+                    className={
+                      action === "Accept"
+                        ? "review-action-button primary-review-action"
+                        : "review-action-button"
+                    }
+                    key={action}
+                    type="button"
+                  >
+                    {action}
+                  </button>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
 
       <section className="detail-grid" aria-label={`${activeWorkspace} details`}>
         {details.map((detail) => (
