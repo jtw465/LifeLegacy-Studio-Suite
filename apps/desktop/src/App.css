@@ -171,9 +171,9 @@ h1 {
 }
 
 .hero-panel,
-.panel-card,
-.biography-summary-card,
-.biography-card,
+.export-summary-card,
+.record-card,
+.detail-card,
 .principle-tile {
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -183,13 +183,112 @@ h1 {
 
 .hero-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
   gap: 26px;
   align-items: stretch;
   padding: 32px;
 }
 
-.biography-hero {
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+.hero-panel h3 {
+  color: var(--legacy-navy);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+  max-width: 920px;
+  margin-bottom: 18px;
+}
+
+.hero-copy {
+  max-width: 780px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.export-summary-card {
+  padding: 24px;
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  background: var(--panel);
+}
+
+.export-summary-card h4 {
+  color: var(--heritage-blue);
+  font-size: 1.45rem;
+  margin-bottom: 0;
+}
+
+.export-summary-card p {
+  line-height: 1.55;
+}
+
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.record-card {
+  padding: 22px;
+  background: var(--panel);
+}
+
+.record-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.record-card h4 {
+  color: var(--legacy-navy);
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.record-meta {
+  display: grid;
+  gap: 12px;
+}
+
+.record-meta div {
+  display: grid;
+  gap: 4px;
+}
+
+.record-meta dt {
+  color: var(--sage-leaf);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.record-meta dd {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.confidence {
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.confidence-high {
+  color: var(--legacy-navy);
+  background: rgba(95, 127, 107, 0.18);
+}
+
+.confidence-medium {
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+}
+
+.confidence-low {
+  color: #7b2f2f;
+  background: rgba(123, 47, 47, 0.12);
 }
 
 .detail-grid {
@@ -199,11 +298,8 @@ h1 {
 }
 
 .detail-card {
-  border: 1px solid var(--line);
-  border-radius: 28px;
   padding: 22px;
   background: var(--panel);
-  box-shadow: var(--soft-shadow);
 }
 
 .detail-card-header {
@@ -233,162 +329,6 @@ h1 {
   font-weight: 900;
   font-size: 0.78rem;
   white-space: nowrap;
-}
-
-.detail-grid {
-  grid-template-columns: 1fr;
-}
-
-.hero-panel h3 {
-  color: var(--legacy-navy);
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 0.98;
-  max-width: 920px;
-  margin-bottom: 18px;
-}
-
-.hero-copy {
-  max-width: 780px;
-  font-size: 1.08rem;
-  line-height: 1.7;
-}
-
-.biography-summary-card {
-  padding: 24px;
-  display: grid;
-  align-content: center;
-  gap: 12px;
-  background: var(--panel);
-}
-
-.biography-summary-card h4 {
-  color: var(--heritage-blue);
-  font-size: 1.45rem;
-  margin-bottom: 0;
-}
-
-.biography-summary-card p {
-  line-height: 1.55;
-}
-
-.biography-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 18px;
-  align-items: start;
-}
-
-.panel-card {
-  padding: 24px;
-}
-
-.section-heading h3 {
-  color: var(--legacy-navy);
-  font-size: 1.45rem;
-  margin-bottom: 18px;
-}
-
-.biography-list {
-  display: grid;
-  gap: 16px;
-}
-
-.biography-card {
-  padding: 20px;
-  background: var(--panel);
-}
-
-.biography-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 14px;
-}
-
-.biography-card h4 {
-  color: var(--legacy-navy);
-  font-size: 1.24rem;
-  margin-bottom: 0;
-}
-
-.biography-summary {
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-
-.confidence {
-  border-radius: 999px;
-  padding: 7px 11px;
-  font-size: 0.78rem;
-  font-weight: 900;
-}
-
-.confidence-high {
-  color: var(--legacy-navy);
-  background: rgba(95, 127, 107, 0.18);
-}
-
-.confidence-medium {
-  color: var(--legacy-navy);
-  background: rgba(199, 154, 74, 0.24);
-}
-
-.confidence-low {
-  color: #7b2f2f;
-  background: rgba(123, 47, 47, 0.12);
-}
-
-.source-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.source-tag {
-  border-radius: 999px;
-  padding: 8px 12px;
-  color: var(--heritage-blue);
-  background: rgba(27, 58, 87, 0.08);
-  font-weight: 800;
-  font-size: 0.82rem;
-}
-
-.insight-card,
-.principle-card {
-  padding: 18px;
-  border-radius: 20px;
-  margin-bottom: 14px;
-}
-
-.insight-card h4,
-.principle-card h4 {
-  margin-bottom: 8px;
-}
-
-.insight-card p,
-.principle-card p {
-  margin-bottom: 0;
-  line-height: 1.55;
-}
-
-.insight-card.strong {
-  color: var(--legacy-navy);
-  background: rgba(95, 127, 107, 0.14);
-}
-
-.insight-card.caution {
-  color: var(--legacy-navy);
-  background: rgba(199, 154, 74, 0.2);
-}
-
-.principle-card {
-  color: white;
-  background: linear-gradient(135deg, var(--legacy-navy), var(--heritage-blue));
-}
-
-.principle-card h4 {
-  color: var(--heritage-gold);
 }
 
 .principle-grid {
@@ -430,14 +370,16 @@ h1 {
     position: static;
   }
 
-  .biography-hero,
-  .biography-layout,
+  .hero-panel,
+  .record-grid,
+  .detail-grid,
   .principle-grid {
     grid-template-columns: 1fr;
   }
 
   .topbar,
-  .biography-header {
+  .record-card-header,
+  .detail-card-header {
     align-items: flex-start;
     flex-direction: column;
   }

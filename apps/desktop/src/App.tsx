@@ -3,6 +3,7 @@ import "./App.css";
 import { AppShell } from "./components/AppShell";
 import type { WorkspaceName } from "./data/workspaces";
 import { workspaceDetails } from "./data/workspaceDetails";
+import { sourceRecords } from "./data/sourceRecords";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -30,12 +31,13 @@ const workspaceContent: Record<
     heroEyebrow: "Bring what you have",
     heroTitle: "Import records without being overwhelmed by the archive.",
     heroCopy:
-      "LifeLegacy begins with the material you already have: scans, PDFs, photos, letters, typed notes, audio, and family documents. The goal is to help you begin gradually.",
+      "LifeLegacy begins with the material you already have: scans, PDFs, photos, letters, typed notes, audio, and family documents.",
     summaryLabel: "Intake status",
     summaryTitle: "Multiple source types supported",
     summaryCopy:
       "The intake foundation prepares records for SDR, Review, Timeline, Biography, Memory Vault, and Export Forge.",
   },
+
   SDR: {
     eyebrow: "Source Document Reader",
     title: "SDR Workspace",
@@ -46,12 +48,13 @@ const workspaceContent: Record<
     heroEyebrow: "The intake engine",
     heroTitle: "SDR turns source material into reviewable genealogy suggestions.",
     heroCopy:
-      "The Source Document Reader is the central assistant layer. It reads source material, suggests possible facts, preserves original evidence, and sends everything forward for human review.",
+      "The Source Document Reader prepares possible names, dates, places, relationships, and source-linked continuity suggestions.",
     summaryLabel: "Current mode",
     summaryTitle: "Human-reviewed assistance",
     summaryCopy:
       "No extracted fact becomes trusted genealogy data until reviewed and approved by the researcher.",
   },
+
   Review: {
     eyebrow: "Review Desk",
     title: "Suggested Facts",
@@ -60,77 +63,81 @@ const workspaceContent: Record<
     sidebarNote:
       "SDR suggestions become trusted genealogy data only after researcher validation.",
     heroEyebrow: "Source-linked validation",
-    heroTitle: "SDR found possible genealogy details. You decide what becomes record.",
+    heroTitle: "Researchers remain the final authority.",
     heroCopy:
-      "The Review Desk keeps the researcher in control. Each suggestion remains connected to its original source so names, dates, places, relationships, and notes can be reviewed safely.",
+      "Review Desk transforms overwhelming manual-entry workflows into manageable review decisions.",
     summaryLabel: "Current review queue",
-    summaryTitle: "4 suggestions awaiting review",
+    summaryTitle: "Source-linked validation",
     summaryCopy:
-      "Nothing is final until approved. This protects source integrity and reduces data-entry overwhelm.",
+      "Every suggestion remains connected to the record that produced it.",
   },
+
   Timeline: {
     eyebrow: "Timeline Builder",
     title: "Historical Continuity",
     settingsLabel: "Timeline Settings",
     sidebarTitle: "Continuity builder",
     sidebarNote:
-      "Timeline Builder turns reviewed evidence into a calm chronological view without replacing researcher judgment.",
+      "Timeline Builder turns reviewed evidence into chronological continuity.",
     heroEyebrow: "Reviewed evidence into sequence",
-    heroTitle: "LifeLegacy helps scattered facts become a readable life path.",
+    heroTitle: "Scattered records become historical flow.",
     heroCopy:
-      "Timeline Builder collects reviewed or review-ready events and arranges them into chronological continuity while keeping uncertainty visible.",
+      "Timeline Builder helps researchers see continuity, uncertainty, and chronology more clearly.",
     summaryLabel: "Timeline draft",
-    summaryTitle: "4 events reconstructed",
+    summaryTitle: "Historical continuity reconstruction",
     summaryCopy:
-      "These events are structured continuity suggestions built from source-linked evidence.",
+      "Timeline continuity remains source-linked and confidence-aware.",
   },
+
   Biography: {
     eyebrow: "Biography Builder",
     title: "Continuity Narrative",
     settingsLabel: "Biography Settings",
     sidebarTitle: "Evidence-aware narrative",
     sidebarNote:
-      "Biography Builder transforms reviewed continuity into readable narrative drafts without hiding uncertainty.",
+      "Biography Builder transforms reviewed continuity into readable narrative drafts.",
     heroEyebrow: "Reviewed evidence into story",
-    heroTitle: "LifeLegacy helps family continuity become readable narrative.",
+    heroTitle: "Family continuity becomes readable narrative.",
     heroCopy:
-      "Biography Builder transforms reviewed evidence and timeline continuity into draft narrative sections. Sources remain attached, uncertainty remains visible, and the researcher remains the final editor.",
+      "Biography Builder supports narrative drafting without pretending to replace researcher judgment.",
     summaryLabel: "Draft narrative",
-    summaryTitle: "3 biography sections prepared",
+    summaryTitle: "Evidence-aware storytelling",
     summaryCopy:
-      "Biography drafts are continuity assistants, not automated truth generators.",
+      "Sources remain visible throughout narrative construction.",
   },
+
   "Memory Vault": {
     eyebrow: "Memory Vault",
     title: "Emotional Archive",
     settingsLabel: "Vault Settings",
     sidebarTitle: "Emotional archive",
     sidebarNote:
-      "The Memory Vault preserves the human texture around genealogy research: photos, letters, audio, and keepsakes.",
+      "The Memory Vault preserves photos, letters, audio, keepsakes, and context.",
     heroEyebrow: "Preserve more than facts",
-    heroTitle: "Family history is not only dates. It is memory, voice, image, and context.",
+    heroTitle: "Family history includes memory and human texture.",
     heroCopy:
-      "The Memory Vault gives photos, letters, recordings, documents, and keepsakes a dedicated preservation space while keeping them connected to research.",
+      "The Memory Vault preserves emotional continuity alongside historical continuity.",
     summaryLabel: "Vault status",
-    summaryTitle: "4 memory items prepared",
+    summaryTitle: "Human continuity preserved",
     summaryCopy:
-      "Memory items remain source-linked and reviewable before becoming part of the preserved family record.",
+      "Memory items remain connected to reviewed research.",
   },
+
   "Export Forge": {
     eyebrow: "Export Forge",
     title: "Interoperability Workspace",
     settingsLabel: "Export Settings",
     sidebarTitle: "Interoperability first",
     sidebarNote:
-      "Export Forge prepares reviewed genealogy material for the tools researchers already use.",
+      "Export Forge prepares reviewed genealogy material for external workflows.",
     heroEyebrow: "Reviewed research, prepared for transfer",
-    heroTitle: "LifeLegacy helps your work move cleanly into genealogy applications.",
+    heroTitle: "LifeLegacy bridges continuity and export.",
     heroCopy:
-      "Export Forge bridges LifeLegacy’s source-first review workflow and the genealogy applications researchers already trust without pretending to replace them.",
+      "Export Forge supports compatibility with genealogy ecosystems while preserving researcher ownership.",
     summaryLabel: "Export readiness",
-    summaryTitle: "3 Tier 1 pathways identified",
+    summaryTitle: "Practical interoperability foundation",
     summaryCopy:
-      "JSON, CSV, and GEDCOM foundations create the first practical bridge from reviewed sources to external genealogy workflows.",
+      "GEDCOM, JSON, and CSV pathways prepare reviewed material for transfer.",
   },
 };
 
@@ -143,7 +150,7 @@ const universalPrinciples = [
 
 function App() {
   const [activeWorkspace, setActiveWorkspace] =
-    useState<WorkspaceName>("Export Forge");
+    useState<WorkspaceName>("SDR");
 
   const content = workspaceContent[activeWorkspace];
   const details = workspaceDetails[activeWorkspace];
@@ -170,6 +177,40 @@ function App() {
           <h4>{content.summaryTitle}</h4>
           <p>{content.summaryCopy}</p>
         </div>
+      </section>
+
+      <section className="record-grid">
+        {sourceRecords.map((record) => (
+          <article className="record-card" key={record.id}>
+            <div className="record-card-header">
+              <div>
+                <p className="card-label">{record.type}</p>
+                <h4>{record.title}</h4>
+              </div>
+
+              <span className={`confidence confidence-${record.confidence.toLowerCase()}`}>
+                {record.confidence}
+              </span>
+            </div>
+
+            <div className="record-meta">
+              <div>
+                <dt>Source</dt>
+                <dd>{record.source}</dd>
+              </div>
+
+              <div>
+                <dt>Status</dt>
+                <dd>{record.reviewStatus}</dd>
+              </div>
+
+              <div>
+                <dt>Year</dt>
+                <dd>{record.year}</dd>
+              </div>
+            </div>
+          </article>
+        ))}
       </section>
 
       <section className="detail-grid" aria-label={`${activeWorkspace} details`}>
