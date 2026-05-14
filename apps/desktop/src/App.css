@@ -601,6 +601,68 @@ h1 {
   line-height: 1.55;
 }
 
+.export-queue-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.export-queue-card {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.export-queue-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.export-queue-card h4 {
+  color: var(--legacy-navy);
+  font-size: 1.18rem;
+  margin-bottom: 0;
+}
+
+.export-queue-header span {
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: var(--legacy-navy);
+  background: rgba(199, 154, 74, 0.24);
+  font-weight: 900;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.export-queue-meta {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.export-queue-meta div {
+  display: grid;
+  gap: 4px;
+}
+
+.export-queue-meta dt {
+  color: var(--sage-leaf);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.export-queue-meta dd {
+  margin: 0;
+  line-height: 1.55;
+}
+
 @media (max-width: 1000px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -615,9 +677,8 @@ h1 {
   .record-grid,
   .review-fact-grid,
   .biography-section-grid,
-  .vault-item-grid {
-    grid-template-columns: 1fr;
-  }
+  .vault-item-grid,
+  .export-queue-grid,
   .detail-grid,
   .principle-grid {
     grid-template-columns: 1fr;
@@ -628,6 +689,7 @@ h1 {
   .review-fact-header,
   .biography-section-header,
   .vault-item-header,
+  .exportr-queue-header,
   .detail-card-header {
     align-items: flex-start;
     flex-direction: column;

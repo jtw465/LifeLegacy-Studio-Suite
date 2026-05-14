@@ -8,6 +8,7 @@ import { reviewActions, reviewFacts } from "./data/reviewFacts";
 import { timelineEvents } from "./data/timelineEvents";
 import { biographySections } from "./data/biographySections";
 import { vaultItems } from "./data/vaultItems";
+import { exportQueue } from "./data/exportQueue";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -346,6 +347,35 @@ function App() {
                 <div>
                   <dt>Emotional Note</dt>
                   <dd>{item.emotionalNote}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </section>
+      )}
+
+      {activeWorkspace === "Export Forge" && (
+        <section className="export-queue-grid" aria-label="Export queue">
+          {exportQueue.map((item) => (
+            <article className="export-queue-card" key={item.id}>
+              <div className="export-queue-header">
+                <div>
+                  <p className="card-label">{item.format}</p>
+                  <h4>{item.title}</h4>
+                </div>
+
+                <span>{item.readiness}</span>
+              </div>
+
+              <dl className="export-queue-meta">
+                <div>
+                  <dt>Destination</dt>
+                  <dd>{item.destination}</dd>
+                </div>
+
+                <div>
+                  <dt>Description</dt>
+                  <dd>{item.description}</dd>
                 </div>
               </dl>
             </article>
