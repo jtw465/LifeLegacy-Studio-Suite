@@ -7,6 +7,7 @@ import { sourceRecords } from "./data/sourceRecords";
 import { reviewActions, reviewFacts } from "./data/reviewFacts";
 import { timelineEvents } from "./data/timelineEvents";
 import { biographySections } from "./data/biographySections";
+import { vaultItems } from "./data/vaultItems";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -318,6 +319,35 @@ function App() {
                   </span>
                 ))}
               </div>
+            </article>
+          ))}
+        </section>
+      )}
+
+      {activeWorkspace === "Memory Vault" && (
+        <section className="vault-item-grid" aria-label="Memory Vault artifacts">
+          {vaultItems.map((item) => (
+            <article className="vault-item-card" key={item.id}>
+              <div className="vault-item-header">
+                <div>
+                  <p className="card-label">{item.type}</p>
+                  <h4>{item.title}</h4>
+                </div>
+
+                <span>{item.preservationStatus}</span>
+              </div>
+
+              <dl className="vault-item-meta">
+                <div>
+                  <dt>Source Context</dt>
+                  <dd>{item.sourceContext}</dd>
+                </div>
+
+                <div>
+                  <dt>Emotional Note</dt>
+                  <dd>{item.emotionalNote}</dd>
+                </div>
+              </dl>
             </article>
           ))}
         </section>
