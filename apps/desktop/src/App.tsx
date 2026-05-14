@@ -6,6 +6,7 @@ import { workspaceDetails } from "./data/workspaceDetails";
 import { sourceRecords } from "./data/sourceRecords";
 import { reviewActions, reviewFacts } from "./data/reviewFacts";
 import { timelineEvents } from "./data/timelineEvents";
+import { biographySections } from "./data/biographySections";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -287,6 +288,35 @@ function App() {
 
                 <p className="timeline-description">{event.description}</p>
                 <p className="timeline-source">Source: {event.sourceTitle}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
+
+      {activeWorkspace === "Biography" && (
+        <section className="biography-section-grid" aria-label="Biography narrative sections">
+          {biographySections.map((section) => (
+            <article className="biography-section-card" key={section.id}>
+              <div className="biography-section-header">
+                <div>
+                  <p className="card-label">Narrative section</p>
+                  <h4>{section.title}</h4>
+                </div>
+
+                <span className={`confidence confidence-${section.confidence.toLowerCase()}`}>
+                  {section.confidence}
+                </span>
+              </div>
+
+              <p className="biography-section-summary">{section.summary}</p>
+
+              <div className="source-tag-list">
+                {section.sourceTitles.map((source) => (
+                  <span className="source-tag" key={source}>
+                    {source}
+                  </span>
+                ))}
               </div>
             </article>
           ))}
