@@ -10,6 +10,7 @@ import { biographySections } from "./data/biographySections";
 import { vaultItems } from "./data/vaultItems";
 import { exportQueue } from "./data/exportQueue";
 import { workspaceMetrics } from "./data/workspaceMetrics";
+import { sessionRecoveryItems } from "./data/sessionRecovery";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -383,6 +384,30 @@ function App() {
           ))}
         </section>
       )}
+
+      <section className="recovery-panel" aria-label="Session recovery">
+        <div>
+          <p className="eyebrow">Continue where you left off</p>
+          <h3>Research continuity recovery</h3>
+          <p>
+            LifeLegacy keeps the next meaningful step visible so interrupted
+            research sessions can resume without rebuilding context.
+          </p>
+        </div>
+
+        <div className="recovery-list">
+          {sessionRecoveryItems.map((item) => (
+            <article className="recovery-card" key={item.id}>
+              <div>
+                <p className="card-label">{item.workspace}</p>
+                <h4>{item.title}</h4>
+              </div>
+              <p className="recovery-status">{item.status}</p>
+              <p>{item.nextAction}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="metrics-grid" aria-label="Workspace metrics">
         {workspaceMetrics.map((metric) => (
