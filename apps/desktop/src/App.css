@@ -663,6 +663,32 @@ h1 {
   line-height: 1.55;
 }
 
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.metric-card {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.metric-card h3 {
+  color: var(--legacy-navy);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.metric-card p:last-child {
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
 @media (max-width: 1000px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -679,6 +705,7 @@ h1 {
   .biography-section-grid,
   .vault-item-grid,
   .export-queue-grid,
+  ,metrics-grid,
   .detail-grid,
   .principle-grid {
     grid-template-columns: 1fr;

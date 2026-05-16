@@ -9,6 +9,7 @@ import { timelineEvents } from "./data/timelineEvents";
 import { biographySections } from "./data/biographySections";
 import { vaultItems } from "./data/vaultItems";
 import { exportQueue } from "./data/exportQueue";
+import { workspaceMetrics } from "./data/workspaceMetrics";
 
 const workspaceContent: Record<
   WorkspaceName,
@@ -382,6 +383,16 @@ function App() {
           ))}
         </section>
       )}
+
+      <section className="metrics-grid" aria-label="Workspace metrics">
+        {workspaceMetrics.map((metric) => (
+          <article className="metric-card" key={metric.id}>
+            <p className="card-label">{metric.label}</p>
+            <h3>{metric.value}</h3>
+            <p>{metric.detail}</p>
+          </article>
+        ))}
+      </section>
 
       <section className="detail-grid" aria-label={`${activeWorkspace} details`}>
         {details.map((detail) => (
