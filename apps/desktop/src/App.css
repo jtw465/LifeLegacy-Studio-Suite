@@ -783,6 +783,23 @@ h1 {
   outline: none;
 }
 
+.search-control select {
+  width: 100%;
+  border: 1px solid rgba(27, 58, 87, 0.18);
+  border-radius: 999px;
+  padding: 14px 18px;
+  color: var(--legacy-navy);
+  background: var(--panel);
+  font: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-control select:focus {
+  border-color: var(--heritage-gold);
+  box-shadow: 0 0 0 4px rgba(199, 154, 74, 0.16);
+}
+
 .search-control input:focus {
   border-color: var(--heritage-gold);
   box-shadow: 0 0 0 4px rgba(199, 154, 74, 0.16);

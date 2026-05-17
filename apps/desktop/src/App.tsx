@@ -160,6 +160,7 @@ function App() {
     useState<WorkspaceName>("SDR");
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [recordTypeFilter, setRecordTypeFilter] = useState("All");
   const content = workspaceContent[activeWorkspace];
   const details = workspaceDetails[activeWorkspace];
 
@@ -174,8 +175,13 @@ function App() {
     ]
       .join(" ")
       .toLowerCase();
+  
+    const matchesSearch = searchText.includes(searchQuery.toLowerCase());
 
-    return searchText.includes(searchQuery.toLowerCase());
+    const matchesType =
+      recordTypeFilter === "All" || record.type === recordTypeFilter;
+
+    return matchesSearch && matchesType;
   });
 
   return (
@@ -218,6 +224,20 @@ function App() {
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
+          <select
+            aria-label="Filter by record type"
+            value={recordTypeFilter}
+            onChange={(event) =>
+              setRecordTypeFilter(event.target.value)
+            }
+          >
+            <option value="All">All record types</option>
+            <option value="PDF">PDF</option>
+            <option value="Image">Image</option>
+            <option value="Letter">Letter</option>
+            <option value="Audio">Audio</option>
+            <option value="Document">Document</option>
+          </select>
           <span>{filteredSourceRecords.length} shown</span>
         </div>
       </section>
