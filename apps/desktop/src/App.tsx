@@ -159,8 +159,24 @@ function App() {
   const [activeWorkspace, setActiveWorkspace] =
     useState<WorkspaceName>("SDR");
 
+  const [searchQuery, setSearchQuery] = useState("");
   const content = workspaceContent[activeWorkspace];
   const details = workspaceDetails[activeWorkspace];
+
+  const filteredSourceRecords = sourceRecords.filter((record) => {
+    const searchText = [
+      record.title,
+      record.type,
+      record.source,
+      record.reviewStatus,
+      record.confidence,
+      record.year,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchText.includes(searchQuery.toLowerCase());
+  });
 
   return (
     <AppShell
@@ -186,8 +202,28 @@ function App() {
         </div>
       </section>
 
+      <section className="search-panel" aria-label="Workspace search">
+        <div>
+          <p className="eyebrow">Workspace search</p>
+          <h3>Filter source records</h3>
+          <p>
+            Search by title, type, source, review status, confidence, or year.
+          </p>
+        </div>
+
+        <div className="search-control">
+          <input
+            aria-label="Search source records"
+            placeholder="Search records, sources, status, or year..."
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
+          <span>{filteredSourceRecords.length} shown</span>
+        </div>
+      </section>
+
       <section className="record-grid">
-        {sourceRecords.map((record) => (
+        {filteredSourceRecords.map((record) => (
           <article className="record-card" key={record.id}>
             <div className="record-card-header">
               <div>
