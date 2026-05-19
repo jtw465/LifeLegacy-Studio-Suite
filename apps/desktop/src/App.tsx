@@ -203,7 +203,13 @@ function App() {
       }
 
       if (sortMode === "Confidence") {
-        return a.confidence.localeCompare(b.confidence);
+        const confidenceRank = {
+          High: 1,
+          Medium: 2,
+          Low: 3,
+        };
+
+        return confidenceRank[a.confidence] - confidenceRank[b.confidence];
       }
 
       return a.reviewStatus.localeCompare(b.reviewStatus);
