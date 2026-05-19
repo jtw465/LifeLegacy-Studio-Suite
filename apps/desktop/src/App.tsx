@@ -267,6 +267,17 @@ function App() {
           >
             Clear filters
           </button>
+          <div className="filter-summary">
+            <p>
+              Search: <strong>{searchQuery || "Any"}</strong>
+            </p>
+            <p>
+              Type: <strong>{recordTypeFilter}</strong>
+            </p>
+            <p>
+              Status: <strong>{statusFilter}</strong>
+            </p>
+          </div>
         </div>
       </section>
 
