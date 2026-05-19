@@ -259,39 +259,50 @@ function App() {
         </div>
       </section>
 
-      <section className="record-grid">
-        {filteredSourceRecords.map((record) => (
-          <article className="record-card" key={record.id}>
-            <div className="record-card-header">
-              <div>
-                <p className="card-label">{record.type}</p>
-                <h4>{record.title}</h4>
+      {filteredSourceRecords.length > 0 ? (
+        <section className="record-grid">
+          {filteredSourceRecords.map((record) => (
+            <article className="record-card" key={record.id}>
+              <div className="record-card-header">
+                <div>
+                  <p className="card-label">{record.type}</p>
+                  <h4>{record.title}</h4>
+                </div>
+
+                <span className={`confidence confidence-${record.confidence.toLowerCase()}`}>
+                  {record.confidence}
+                </span>
               </div>
 
-              <span className={`confidence confidence-${record.confidence.toLowerCase()}`}>
-                {record.confidence}
-              </span>
-            </div>
+              <div className="record-meta">
+                <div>
+                  <dt>Source</dt>
+                  <dd>{record.source}</dd>
+                </div>
 
-            <div className="record-meta">
-              <div>
-                <dt>Source</dt>
-                <dd>{record.source}</dd>
-              </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>{record.reviewStatus}</dd>
+                </div>
 
-              <div>
-                <dt>Status</dt>
-                <dd>{record.reviewStatus}</dd>
+                <div>
+                  <dt>Year</dt>
+                  <dd>{record.year}</dd>
+                </div>
               </div>
-
-              <div>
-                <dt>Year</dt>
-                <dd>{record.year}</dd>
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
+            </article>
+          ))}
+        </section>
+      ) : (
+        <section className="empty-state" aria-label="No matching records">
+          <p className="eyebrow">No matching records</p>
+          <h3>No source records match the current filters.</h3>
+          <p>
+            Try clearing the search text, changing the record type, or choosing a
+            different review status.
+          </p>
+        </section>
+      )}
 
       {activeWorkspace === "Review" && (
         <section className="review-fact-grid" aria-label="Review fact suggestions">
