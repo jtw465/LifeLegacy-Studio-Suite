@@ -161,6 +161,7 @@ function App() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [recordTypeFilter, setRecordTypeFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
   const content = workspaceContent[activeWorkspace];
   const details = workspaceDetails[activeWorkspace];
 
@@ -180,6 +181,11 @@ function App() {
 
     const matchesType =
       recordTypeFilter === "All" || record.type === recordTypeFilter;
+
+    const matchesStatus =
+      statusFilter === "All" || record.reviewStatus === statusFilter;
+
+    return matchesSearch && matchesType && matchesStatus;
 
     return matchesSearch && matchesType;
   });
@@ -237,6 +243,17 @@ function App() {
             <option value="Letter">Letter</option>
             <option value="Audio">Audio</option>
             <option value="Document">Document</option>
+          </select>
+          <select
+            aria-label="Filter by review status"
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+          >
+            <option value="All">All review statuses</option>
+            <option value="Pending Review">Pending Review</option>
+            <option value="Ready for SDR">Ready for SDR</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Needs Attention">Needs Attention</option>
           </select>
           <span>{filteredSourceRecords.length} shown</span>
         </div>
