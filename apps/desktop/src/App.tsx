@@ -256,6 +256,17 @@ function App() {
             <option value="Needs Attention">Needs Attention</option>
           </select>
           <span>{filteredSourceRecords.length} shown</span>
+          <button
+            className="clear-filters-button"
+            type="button"
+            onClick={() => {
+              setSearchQuery("");
+              setRecordTypeFilter("All");
+              setStatusFilter("All");
+            }}
+          >
+            Clear filters
+          </button>
         </div>
       </section>
 
