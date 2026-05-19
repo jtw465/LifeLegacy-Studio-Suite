@@ -162,33 +162,52 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [recordTypeFilter, setRecordTypeFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [sortMode, setSortMode] = useState("Year");
   const content = workspaceContent[activeWorkspace];
   const details = workspaceDetails[activeWorkspace];
 
-  const filteredSourceRecords = sourceRecords.filter((record) => {
-    const searchText = [
-      record.title,
-      record.type,
-      record.source,
-      record.reviewStatus,
-      record.confidence,
-      record.year,
-    ]
-      .join(" ")
-      .toLowerCase();
-  
-    const matchesSearch = searchText.includes(searchQuery.toLowerCase());
+  const filteredSourceRecords = sourceRecords
+    .filter((record) => {
+      const searchText = [
+        record.title,
+        record.type,
+        record.source,
+        record.reviewStatus,
+        record.confidence,
+        record.year,
+      ]
+        .join(" ")
+        .toLowerCase();
 
-    const matchesType =
-      recordTypeFilter === "All" || record.type === recordTypeFilter;
+      const matchesSearch = searchText.includes(searchQuery.toLowerCase());
 
-    const matchesStatus =
-      statusFilter === "All" || record.reviewStatus === statusFilter;
+      const matchesType =
+        recordTypeFilter === "All" || record.type === recordTypeFilter;
 
-    return matchesSearch && matchesType && matchesStatus;
+      const matchesStatus =
+        statusFilter === "All" || record.reviewStatus === statusFilter;
 
-    return matchesSearch && matchesType;
-  });
+      return matchesSearch && matchesType && matchesStatus;
+    })
+    .sort((a, b) => {
+      if (sortMode === "Year") {
+        return Number(a.year) - Number(b.year);
+      }
+
+      if (sortMode === "Title") {
+        return a.title.localeCompare(b.title);
+      }
+
+      if (sortMode === "Type") {
+        return a.type.localeCompare(b.type);
+      }
+
+      if (sortMode === "Confidence") {
+        return a.confidence.localeCompare(b.confidence);
+      }
+
+      return a.reviewStatus.localeCompare(b.reviewStatus);
+    });
 
   return (
     <AppShell
@@ -255,6 +274,17 @@ function App() {
             <option value="Reviewed">Reviewed</option>
             <option value="Needs Attention">Needs Attention</option>
           </select>
+          <select
+            aria-label="Sort source records"
+            value={sortMode}
+            onChange={(event) => setSortMode(event.target.value)}
+          >
+            <option value="Year">Sort by year</option>
+            <option value="Title">Sort by title</option>
+            <option value="Type">Sort by type</option>
+            <option value="Confidence">Sort by confidence</option>
+            <option value="Status">Sort by status</option>
+          </select>
           <span>{filteredSourceRecords.length} shown</span>
           <button
             className="clear-filters-button"
@@ -280,6 +310,10 @@ function App() {
           </div>
         </div>
       </section>
+
+            <p>
+              Sort: <strong>{sortMode}</strong>
+            </p>
 
       {filteredSourceRecords.length > 0 ? (
         <section className="record-grid">
